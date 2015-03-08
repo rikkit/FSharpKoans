@@ -57,6 +57,24 @@ module ``about the stock example`` =
 
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
-        
+        let splitCommas (x:string) =
+            x.Split([|','|])
+
+        let diff (x:string[]) =
+            let day = x.[0]
+            let openVal = System.Double.Parse(x.[1])
+            let closeVal = System.Double.Parse(x.[4])
+            let diff = abs (closeVal - openVal)
+            
+            (day, diff)
+
+        let max =
+            List.tail stockData
+            |> List.map splitCommas
+            |> List.map diff
+            |> List.maxBy (fun (x, y) -> y)
+
+
+        let result = fst max
+
         AssertEquality "2012-03-13" result

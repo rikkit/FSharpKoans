@@ -67,7 +67,11 @@ module ``about strings`` =
                         lines"
 
         AssertEquality
-              message __
+              message "This
+                        is
+                        on
+                        five
+                        lines"
 
     [<Koan>]
     let ExtractValues() =
@@ -76,18 +80,22 @@ module ``about strings`` =
         let first = message.[0]
         let other = message.[4] 
 
-        AssertEquality first __
-        AssertEquality other __
+        AssertEquality first 'h'
+        AssertEquality other 'o'
 
     [<Koan>]
     let ApplyWhatYouLearned() =
         (* It's time to apply what you've learned so far. Fill in the function below to
            make the asserts pass *)
+
+        let d x = x * 2
+        let t x = x * 3
+
         let getFunFacts x =
-            __
+            sprintf "%d doubled is %d, and %d tripled is %d!" x (d x) x (t x)
 
         let funFactsAboutThree = getFunFacts 3
         let funFactsAboutSix = getFunFacts 6
 
-        AssertEquality "3 doubled is 6, and 3 tripled is 9!" funFactsAboutThree 
+        AssertEquality "3 doubled is 6, and 3 tripled is 9!" funFactsAboutThree
         AssertEquality "6 doubled is 12, and 6 tripled is 18!" funFactsAboutSix 
